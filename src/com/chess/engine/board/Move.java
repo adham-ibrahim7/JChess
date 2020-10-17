@@ -241,7 +241,7 @@ public abstract class Move {
 			
 			builder.setPiece(this.movedPiece.movePiece(this));
 			//TODO look into first move?
-			builder.setPiece(new Rook(this.castleRookDestination, this.castleRook.getPieceAlliance()));
+			builder.setPiece(new Rook(this.castleRookDestination, this.castleRook.getPieceAlliance(), false));
 			builder.setNextMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
 			
 			return builder.build();

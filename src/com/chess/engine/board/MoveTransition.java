@@ -17,8 +17,15 @@ public class MoveTransition {
 	}
 
 	public MoveStatus getMoveStatus() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.moveStatus;
+	}
+
+	public Board getTransitionBoard() {
+		return this.transitionBoard;
+	}
+	
+	public Move getMove() {
+		return this.move;
 	}
 	
 }

@@ -7,9 +7,9 @@ import java.util.List;
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
-import com.chess.engine.board.Tile;
 import com.chess.engine.board.Move.KingSideCastleMove;
 import com.chess.engine.board.Move.QueenSideCastleMove;
+import com.chess.engine.board.Tile;
 import com.chess.engine.pieces.Piece;
 import com.chess.engine.pieces.Rook;
 
@@ -62,7 +62,11 @@ public class WhitePlayer extends Player {
 				!this.board.getTile(57).isTileOccupied()) {
 				
 				final Tile rookTile = this.board.getTile(56);
-				if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove()) {
+				if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove() &&
+					Player.calculateAttacksOnTile(58, opponentLegals).isEmpty() &&
+					Player.calculateAttacksOnTile(59, opponentLegals).isEmpty() &&
+					rookTile.getPiece().getPieceType().isRook()) {
+					
 					kingCastles.add(new QueenSideCastleMove(this.board, 
 															this.playerKing,
 															58, 

@@ -14,11 +14,11 @@ public abstract class Piece {
 	protected final PieceType pieceType;
 	private final int cachedHashCode;
 	
-	Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance) {
+	Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
 		this.piecePosition = piecePosition;
 		this.pieceAlliance = pieceAlliance;
 		//TODO fix first move
-		this.isFirstMove = false;
+		this.isFirstMove = isFirstMove;
 		this.pieceType = pieceType;
 	
 		this.cachedHashCode = computeHashCode();
@@ -89,7 +89,7 @@ public abstract class Piece {
 			public boolean isKing() {return false;}
 			public boolean isRook() {return true;}
 		},
-		KNIGHT("K") {
+		KNIGHT("N") {
 			public boolean isKing() {return false;}
 			public boolean isRook() {return false;}
 		},

@@ -6,12 +6,6 @@ import java.util.Map;
 
 import com.chess.engine.pieces.Piece;
 
-/*
- * The Tile class represents the tiles of the board.
- * A chess board has 8 * 8 = 64 tiles, of which are always
- * either empty or occupied
- */
-
 public abstract class Tile {
 
 	protected final int tileCoordinate;
