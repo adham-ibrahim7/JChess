@@ -48,6 +48,7 @@ public enum Alliance {
 	
 	public abstract int getDirection();
 
+	//TODO refactor this into piece.isWhite() as opposed to piece.getPieceAlliance().isWhite()
 	public abstract boolean isBlack();
 
 	public abstract boolean isWhite();

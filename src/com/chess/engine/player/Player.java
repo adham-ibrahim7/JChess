@@ -83,6 +83,7 @@ public abstract class Player {
 	public boolean isInStalemate() {
 		return !this.isInCheck && !hasEscapeMoves();
 	}
+	
 	//TODO get these done
 	public boolean isCastled() {
 		return false;
@@ -96,7 +97,7 @@ public abstract class Player {
 		final Board transitionBoard = move.execute();
 		
 		final Collection<Move> kingAttacks = Player.calculateAttacksOnTile(transitionBoard.currentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
-				transitionBoard.currentPlayer().getLegalMoves());
+																		transitionBoard.currentPlayer().getLegalMoves());
 		
 		if (!kingAttacks.isEmpty()) {
 			return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);

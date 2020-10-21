@@ -9,16 +9,26 @@ public abstract class Move {
 
 	public static final Move NULL_MOVE = new NullMove();
 	
-	final Board board;
-	final Piece movedPiece;
-	final int destinationCoordinate;
+	protected final Board board;
+	protected final Piece movedPiece;
+	protected final int destinationCoordinate;
+	protected final boolean isFirstMove;
 	
 	private Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
 		this.board = board;
 		this.movedPiece = movedPiece;
 		this.destinationCoordinate = destinationCoordinate;
+		this.isFirstMove = movedPiece.isFirstMove();
 	}
 	
+	private Move(final Board board, final int destinationCoordinate) {
+		this.board = board;
+		this.movedPiece = null;
+		this.destinationCoordinate = destinationCoordinate;
+		this.isFirstMove = false;
+	}
+	
+	//TODO cache hash code for move
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -26,6 +36,7 @@ public abstract class Move {
 		
 		result = prime * result + this.destinationCoordinate;
 		result = prime * result + this.movedPiece.hashCode();
+		result = prime * result + this.movedPiece.getPiecePosition();
 		
 		return result;
 	}
@@ -41,7 +52,8 @@ public abstract class Move {
 		Move m = (Move) o;
 		
 		return this.destinationCoordinate == m.getDestinationCoordinate() &&
-				this.getMovedPiece().equals(m.getMovedPiece());
+			   this.getMovedPiece().equals(m.getMovedPiece()) &&
+			   this.getCurrentCoordinate() == m.getCurrentCoordinate();
 	}
 	
 	public Piece getMovedPiece() {
@@ -93,6 +105,16 @@ public abstract class Move {
 			super(board, movedPiece, destinationCoordinate);
 		}
 		
+		@Override
+		public boolean equals(Object o) {
+			return this == o || o instanceof MajorMove && super.equals(o);
+		}
+		
+		@Override
+		public String toString() {
+			return movedPiece.toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+		}
+		
 	}
 	
 	
@@ -120,13 +142,12 @@ public abstract class Move {
 			
 			MajorAttackMove a = (MajorAttackMove) o;
 			
-			return super.equals(o) &&
-					attackedPiece.equals(a.getAttackedPiece());
+			return super.equals(o) && attackedPiece.equals(a.getAttackedPiece());
 		}
 		
 		@Override
 		public Board execute() {
-			
+			//TODO EXECUTE ATTACK MOVE????
 			
 			return null;
 		}
@@ -198,6 +219,11 @@ public abstract class Move {
 			builder.setNextMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
 			
 			return builder.build();
+		}
+		
+		@Override
+		public String toString() {
+			return BoardUtils.getPositionAtCoordinate(destinationCoordinate);
 		}
 		
 	}
@@ -280,7 +306,7 @@ public abstract class Move {
 	public static final class NullMove extends Move {
 		
 		public NullMove() {
-			super(null, null, -1);
+			super(null, -1);
 		}
 		
 		@Override
