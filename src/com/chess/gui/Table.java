@@ -217,12 +217,19 @@ public class Table {
 							
 							destinationTile = chessBoard.getTile(tileId);
 							final Move move = MoveFactory.createMove(chessBoard, sourceTile.getTileCoordinate(), destinationTile.getTileCoordinate());
+<<<<<<< HEAD
 							System.out.println(move);
+=======
+>>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 							final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
 							
 							if (transition.getMoveStatus().isDone()) {
 								chessBoard = transition.getTransitionBoard();
 								moveLog.addMove(move);
+<<<<<<< HEAD
+=======
+								//TODO add the move that was made to the move log
+>>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 							}
 							
 							sourceTile = null;

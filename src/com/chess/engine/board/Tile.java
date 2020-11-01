@@ -6,12 +6,15 @@ import java.util.Map;
 
 import com.chess.engine.pieces.Piece;
 
+<<<<<<< HEAD
 /*
  * The Tile class represents the tiles of the board.
  * A chess board has 8 * 8 = 64 tiles, of which are always
  * either empty or occupied
  */
 
+=======
+>>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 public abstract class Tile {
 
 	protected final int tileCoordinate;
@@ -40,6 +43,13 @@ public abstract class Tile {
 	
 	public abstract Piece getPiece();
 	
+<<<<<<< HEAD
+=======
+	public int getTileCoordinate() {
+		return this.tileCoordinate;
+	}
+	
+>>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	public static final class EmptyTile extends Tile {
 		
 		private EmptyTile(final int coordinate) {
@@ -87,4 +97,8 @@ public abstract class Tile {
 			return this.pieceOnTile;
 		}
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 }

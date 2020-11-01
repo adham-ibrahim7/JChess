@@ -9,15 +9,24 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
+<<<<<<< HEAD
 import com.chess.engine.board.Move.AttackMove;
+=======
+import com.chess.engine.board.Move.MajorAttackMove;
+>>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 import com.chess.engine.board.Move.MajorMove;
 
 public class Rook extends Piece {
 
 	private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-8, -1, 1, 8};
 
+<<<<<<< HEAD
 	public Rook(int piecePosition, Alliance pieceAlliance) {
 		super(Piece.PieceType.ROOK, piecePosition, pieceAlliance);
+=======
+	public Rook(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
+		super(Piece.PieceType.ROOK, piecePosition, pieceAlliance, isFirstMove);
+>>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	}
 
 	@Override
@@ -38,7 +47,11 @@ public class Rook extends Piece {
                     } else {
                         final Alliance pieceAtDestinationAllegiance = pieceAtDestination.getPieceAlliance();
                         if (this.pieceAlliance != pieceAtDestinationAllegiance) {
+<<<<<<< HEAD
                             legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate,
+=======
+                            legalMoves.add(new MajorAttackMove(board, this, candidateDestinationCoordinate,
+>>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
                                     pieceAtDestination));
                         }
                         break;
@@ -56,10 +69,17 @@ public class Rook extends Piece {
 	private static boolean isEigthColumnExclusion(final int currentPosition, final int candidateOffset) {
 		return BoardUtils.EIGTH_COLUMN[currentPosition] && (candidateOffset == 1);
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
 		return Piece.PieceType.ROOK.toString();
+=======
+	
+	@Override
+	public Rook movePiece(Move move) {
+		return new Rook(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance(), false);
+>>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	}
 	
 }
