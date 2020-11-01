@@ -1,9 +1,5 @@
 package com.chess.engine.board;
 
-<<<<<<< HEAD
-public class BoardUtils {
-	
-=======
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,20 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 public class BoardUtils {
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	public static final int NUM_TILES = 64;
 	public static final int NUM_TILES_PER_ROW = 8;
-	
-	public static final boolean[] FIRST_COLUMN = initColumn(0);
-	public static final boolean[] SECOND_COLUMN = initColumn(1);
-	public static final boolean[] SEVENTH_COLUMN = initColumn(6);
-	public static final boolean[] EIGTH_COLUMN = initColumn(7);
-	
-<<<<<<< HEAD
+
 	//TODO fix this
 	public static final boolean[] SECOND_ROW = initRow(8);
 	public static final boolean[] SEVENTH_ROW = initRow(48);
-=======
 	public static final boolean[] EIGTH_RANK = initRow(0);
 	public static final boolean[] SEVENTH_RANK = initRow(8);
 	public static final boolean[] SIXTH_RANK = initRow(16);
@@ -36,8 +24,7 @@ public class BoardUtils {
 	
 	private static final List<String> ALGEBRAIC_NOTATION = initializeAlgebraicNotation();
 	private static final Map<String, Integer> POSITION_TO_COORDINATE = initializePositionToCoordinateMap();
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
-	
+
 	private static boolean[] initColumn(int columnNumber) {
 		final boolean[] column = new boolean[NUM_TILES];
 		
@@ -48,11 +35,7 @@ public class BoardUtils {
 		
 		return column;
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	private static boolean[] initRow(int rowStart) {
 		final boolean[] row = new boolean[NUM_TILES];
 		
@@ -66,7 +49,6 @@ public class BoardUtils {
 		return row;
 	}
 	
-<<<<<<< HEAD
 	private BoardUtils() {
 		throw new RuntimeException("Cannot instantiate BoardUtils class");
 	}
@@ -74,7 +56,7 @@ public class BoardUtils {
 	public static boolean isValidTileCoordinate(int coordinate) {
 		return coordinate >= 0 && coordinate < NUM_TILES;
 	}
-=======
+
 	private static Map<String, Integer> initializePositionToCoordinateMap() {
 		final Map<String, Integer> positionToCoordinate = new HashMap<>();
         for (int i = 0; i < NUM_TILES; i++) {
@@ -94,13 +76,7 @@ public class BoardUtils {
                 "a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2",
                 "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1"));
 	}
-	
-	private BoardUtils() {}
-	
-	public static boolean isValidTileCoordinate(int coordinate) {
-		return coordinate >= 0 && coordinate < NUM_TILES;
-	}
-	
+
 	public static int getCoordinateAtPosition(String position) {
 		return POSITION_TO_COORDINATE.get(position);
 	}
@@ -108,6 +84,5 @@ public class BoardUtils {
 	public static String getPositionAtCoordinate(int coordinate) {
 		return ALGEBRAIC_NOTATION.get(coordinate);
 	}
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 
 }

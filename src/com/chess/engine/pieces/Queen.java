@@ -9,24 +9,15 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
-<<<<<<< HEAD
-import com.chess.engine.board.Move.AttackMove;
-=======
 import com.chess.engine.board.Move.MajorAttackMove;
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 import com.chess.engine.board.Move.MajorMove;
 
 public class Queen extends Piece {
 
 	private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
 
-<<<<<<< HEAD
-	public Queen(int piecePosition, Alliance pieceAlliance) {
-		super(Piece.PieceType.QUEEN, piecePosition, pieceAlliance);
-=======
 	public Queen(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
 		super(Piece.PieceType.QUEEN, piecePosition, pieceAlliance, isFirstMove);
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	}
 
 	@Override
@@ -49,11 +40,7 @@ public class Queen extends Piece {
                     } else {
                         final Alliance pieceAtDestinationAllegiance = pieceAtDestination.getPieceAlliance();
                         if (this.pieceAlliance != pieceAtDestinationAllegiance) {
-<<<<<<< HEAD
-                            legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate,
-=======
                             legalMoves.add(new MajorAttackMove(board, this, candidateDestinationCoordinate,
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
                                     pieceAtDestination));
                         }
                         break;
@@ -65,21 +52,20 @@ public class Queen extends Piece {
     }
 	
 	private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-		return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -1 || candidateOffset == -9 || candidateOffset == 7);
+		return BoardUtils.FIRST_RANK[currentPosition] && (candidateOffset == -1 || candidateOffset == -9 || candidateOffset == 7);
 	}
 	
 	private static boolean isEigthColumnExclusion(final int currentPosition, final int candidateOffset) {
-		return BoardUtils.EIGTH_COLUMN[currentPosition] && (candidateOffset == 1 || candidateOffset == -7 || candidateOffset == 9);
+		return BoardUtils.EIGTH_RANK[currentPosition] && (candidateOffset == 1 || candidateOffset == -7 || candidateOffset == 9);
 	}
 	
 	@Override
-<<<<<<< HEAD
 	public String toString() {
-		return Piece.PieceType.QUEEN.toString();
-=======
-	public Queen movePiece(Move move) {
+        return Piece.PieceType.QUEEN.toString();
+    }
+
+    public Queen movePiece(Move move) {
 		return new Queen(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance(), false);
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	}
 
 }

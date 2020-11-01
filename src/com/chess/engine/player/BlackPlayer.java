@@ -1,25 +1,12 @@
 package com.chess.engine.player;
 
-<<<<<<< HEAD
-import java.util.Collection;
-=======
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
-<<<<<<< HEAD
-import com.chess.engine.pieces.Piece;
-
-public class BlackPlayer extends Player {
-
-	public BlackPlayer(Board board, Collection<Move> legalMoves, Collection<Move> opponentMoves) {
-		super(board, legalMoves, opponentMoves);
-		// TODO Auto-generated constructor stub
-=======
 import com.chess.engine.board.Tile;
 import com.chess.engine.board.Move.KingSideCastleMove;
 import com.chess.engine.board.Move.QueenSideCastleMove;
@@ -30,7 +17,6 @@ public class BlackPlayer extends Player {
 
 	public BlackPlayer(final Board board, final Collection<Move> legalMoves, final Collection<Move> opponentMoves) {
 		super(board, legalMoves, opponentMoves);
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	}
 
 	@Override
@@ -48,8 +34,6 @@ public class BlackPlayer extends Player {
 		return this.board.whitePlayer();
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	protected Collection<Move> calculateKingCastles(final Collection<Move> playerLegals, final Collection<Move> opponentLegals) {
 		final List<Move> kingCastles = new ArrayList<>();
@@ -96,5 +80,4 @@ public class BlackPlayer extends Player {
 		return kingCastles;
 	}
 
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 }

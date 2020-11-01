@@ -1,14 +1,5 @@
 package com.chess.engine.board;
 
-<<<<<<< HEAD
-import com.chess.engine.pieces.Piece;
-
-public abstract class Move {
-
-	final Board board;
-	final Piece movedPiece;
-	final int destinationCoordinate;
-=======
 import com.chess.engine.board.Board.BoardBuilder;
 import com.chess.engine.pieces.Pawn;
 import com.chess.engine.pieces.Piece;
@@ -22,26 +13,21 @@ public abstract class Move {
 	protected final Piece movedPiece;
 	protected final int destinationCoordinate;
 	protected final boolean isFirstMove;
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
-	
-	private Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
-		this.board = board;
-		this.movedPiece = movedPiece;
-		this.destinationCoordinate = destinationCoordinate;
-<<<<<<< HEAD
-	}
-	
-=======
-		this.isFirstMove = movedPiece.isFirstMove();
-	}
-	
+
 	private Move(final Board board, final int destinationCoordinate) {
 		this.board = board;
 		this.movedPiece = null;
 		this.destinationCoordinate = destinationCoordinate;
 		this.isFirstMove = false;
 	}
-	
+
+	private Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
+		this.board = board;
+		this.movedPiece = movedPiece;
+		this.destinationCoordinate = destinationCoordinate;
+		this.isFirstMove = movedPiece.isFirstMove();
+	}
+
 	//TODO cache hash code for move
 	@Override
 	public int hashCode() {
@@ -113,23 +99,24 @@ public abstract class Move {
 		return builder.build();
 	}
 
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	public static final class MajorMove extends Move {
 		
 		public MajorMove(final Board board, final Piece movedPiece, final int destinationCoordinate) {
 			super(board, movedPiece, destinationCoordinate);
 		}
 		
-<<<<<<< HEAD
 	}
 	
 	
-	public static final class AttackMove extends Move {
+	private abstract static class AttackMove extends Move {
 		
-		final Piece attackedPiece;
+		private final Piece attackedPiece;
 		
 		public AttackMove(final Board board, final Piece movedPiece, final int destinationCoordinate, final Piece attackedPiece) {
-=======
+			super(board, movedPiece, destinationCoordinate);
+			this.attackedPiece = attackedPiece;
+		}
+
 		@Override
 		public boolean equals(Object o) {
 			return this == o || o instanceof MajorMove && super.equals(o);
@@ -139,25 +126,29 @@ public abstract class Move {
 		public String toString() {
 			return movedPiece.toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
 		}
+
+		@Override
+		public boolean isAttack() {
+			return true;
+		}
+
+		@Override
+		public Piece getAttackedPiece() {
+			return this.attackedPiece;
+		}
 		
 	}
 	
 	
-	public static class MajorAttackMove extends Move {
-		
-		final Piece attackedPiece;
-		
+	public static class MajorAttackMove extends AttackMove {
+
 		public MajorAttackMove(final Board board, final Piece movedPiece, final int destinationCoordinate, final Piece attackedPiece) {
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
-			super(board, movedPiece, destinationCoordinate);
-			this.attackedPiece = attackedPiece;
+			super(board, movedPiece, destinationCoordinate, attackedPiece);
 		}
 		
-<<<<<<< HEAD
-=======
 		@Override
 		public int hashCode() {
-			return this.attackedPiece.hashCode() + super.hashCode();
+			return this.getAttackedPiece().hashCode() + super.hashCode();
 		}
 		
 		@Override
@@ -170,26 +161,11 @@ public abstract class Move {
 			
 			MajorAttackMove a = (MajorAttackMove) o;
 			
-			return super.equals(o) && attackedPiece.equals(a.getAttackedPiece());
+			return super.equals(o) && this.getAttackedPiece().equals(a.getAttackedPiece());
 		}
-		
-		@Override
-		public Board execute() {
-			//TODO EXECUTE ATTACK MOVE????
-			
-			return null;
-		}
-		
-		@Override
-		public boolean isAttack() {
-			return true;
-		}
-		
-		@Override
-		public Piece getAttackedPiece() {
-			return this.attackedPiece;
-		}
-		
+
+		//TODO is attack move execution any different than default?
+
 	}
 	
 	public static final class PawnMove extends Move {
@@ -361,7 +337,6 @@ public abstract class Move {
 			return NULL_MOVE;
 		}
 		
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	}
 	
 }

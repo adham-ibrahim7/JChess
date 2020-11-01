@@ -6,31 +6,18 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
 
-<<<<<<< HEAD
-public abstract class Piece {
-
-=======
 public abstract class Piece implements Comparable<Piece> {
 	
 	//TODO get better art??
 	private static String PIECE_ART_FOLDER_PATH = "art/simple/";
 	
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	protected final int piecePosition;
 	protected final Alliance pieceAlliance;
 	protected final boolean isFirstMove;
 	protected final PieceType pieceType;
-<<<<<<< HEAD
-	
-	Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance) {
-		this.piecePosition = piecePosition;
-		this.pieceAlliance = pieceAlliance;
-		//TODO more work here
-		this.isFirstMove = false;
-		this.pieceType = pieceType;
-=======
+
 	private final int cachedHashCode;
-	
+
 	Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
 		this.piecePosition = piecePosition;
 		this.pieceAlliance = pieceAlliance;
@@ -74,7 +61,6 @@ public abstract class Piece implements Comparable<Piece> {
 	@Override
 	public int compareTo(Piece o) {
 		return Integer.compare(this.getPieceType().getValue(), o.getPieceType().getValue());
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 	}
 	
 	public int getPiecePosition() {
@@ -92,39 +78,6 @@ public abstract class Piece implements Comparable<Piece> {
 	public PieceType getPieceType() {
 		return this.pieceType;
 	}
-	
-<<<<<<< HEAD
-	public abstract Collection<Move> calculateLegalMoves(final Board board);
-
-	public enum PieceType {
-		
-		PAWN("P") {
-			public boolean isKing() {return false;}
-		},
-		BISHOP("B") {
-			public boolean isKing() {return false;}
-		},
-		ROOK("R") {
-			public boolean isKing() {return false;}
-		},
-		KNIGHT("K") {
-			public boolean isKing() {return false;}
-		},
-		QUEEN("Q") {
-			public boolean isKing() {return false;}
-		},
-		KING("K") {
-			public boolean isKing() {return true;}
-		};
-		
-		private String pieceName;
-		
-		PieceType(final String pieceName) {
-			this.pieceName = pieceName;
-		}
-		
-		public abstract boolean isKing();
-=======
 	public String getImageIconFilePath() {
 		return PIECE_ART_FOLDER_PATH + 
 				//TODO alliance toString() - is it B or Black??
@@ -169,20 +122,16 @@ public abstract class Piece implements Comparable<Piece> {
 		public boolean isRook() {
 			return this == PieceType.ROOK;
 		}
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
-		
+
 		@Override
 		public String toString() {
 			return this.pieceName;
 		}
 	}
-	
-<<<<<<< HEAD
-=======
+
 	@Override
 	public String toString() {
 		return this.pieceType.toString();
 	}
 
->>>>>>> 0e8745abf5099f0afcd72c6b106d5dc93c416393
 }
