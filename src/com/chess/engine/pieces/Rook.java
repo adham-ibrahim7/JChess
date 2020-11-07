@@ -50,11 +50,11 @@ public class Rook extends Piece {
     }
 	
 	private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-		return BoardUtils.FIRST_RANK[currentPosition] && (candidateOffset == -1);
+		return BoardUtils.EIGHTH_ROW[currentPosition] && (candidateOffset == -1);
 	}
 	
 	private static boolean isEigthColumnExclusion(final int currentPosition, final int candidateOffset) {
-		return BoardUtils.EIGTH_RANK[currentPosition] && (candidateOffset == 1);
+		return BoardUtils.FIRST_ROW[currentPosition] && (candidateOffset == 1);
 	}
 
 	@Override

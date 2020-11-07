@@ -50,11 +50,11 @@ public class Bishop extends Piece {
     }
 	
 	private static boolean isFirstColumnExclusion(final int candidateOffset, final int currentPosition) {
-		return BoardUtils.FIRST_RANK[currentPosition] && (candidateOffset == -9 || candidateOffset == 7);
+		return BoardUtils.EIGHTH_ROW[currentPosition] && (candidateOffset == -9 || candidateOffset == 7);
 	}
 	
 	private static boolean isEigthColumnExclusion(final int candidateOffset, final int currentPosition) {
-		return BoardUtils.EIGTH_RANK[currentPosition] && (candidateOffset == -7 || candidateOffset == 9);
+		return BoardUtils.FIRST_ROW[currentPosition] && (candidateOffset == -7 || candidateOffset == 9);
 	}
 	
 	@Override

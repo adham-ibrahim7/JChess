@@ -9,7 +9,6 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
-import com.chess.engine.board.Move.*;
 import com.chess.engine.board.Move.MajorAttackMove;
 import com.chess.engine.board.Move.MajorMove;
 
@@ -25,15 +24,18 @@ public class Knight extends Piece {
 	public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
         for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
-            if(isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
+            if (isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
                isSecondColumnExclusion(this.piecePosition, currentCandidateOffset) ||
                isSeventhColumnExclusion(this.piecePosition, currentCandidateOffset) ||
                isEigthColumnExclusion(this.piecePosition, currentCandidateOffset)) {
                 continue;
             }
+
             final int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
+
             if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
                 final Piece pieceAtDestination = board.getTile(candidateDestinationCoordinate).getPiece();
+
                 if (pieceAtDestination == null) {
                     legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
                 } else {
@@ -46,21 +48,22 @@ public class Knight extends Piece {
         }
         return Collections.unmodifiableList(legalMoves);
     }
-	
+
+    //TODO capture exclusions in BoardUtils?
 	private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-		return BoardUtils.FIRST_RANK[currentPosition] && (candidateOffset == -17 || candidateOffset == -10 || candidateOffset == 6 || candidateOffset == 15);
+		return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -17 || candidateOffset == -10 || candidateOffset == 6 || candidateOffset == 15);
 	}
 	
 	private static boolean isSecondColumnExclusion(final int currentPosition, final int candidateOffset) {
-		return BoardUtils.SECOND_RANK[currentPosition] && (candidateOffset == -10 || candidateOffset == 6);
+		return BoardUtils.SECOND_COLUMN[currentPosition] && (candidateOffset == -10 || candidateOffset == 6);
 	}
 	
 	private static boolean isSeventhColumnExclusion(final int currentPosition, final int candidateOffset) {
-		return BoardUtils.SEVENTH_RANK[currentPosition] && (candidateOffset == -6 || candidateOffset == 10);
+		return BoardUtils.SEVENTH_COLUMN[currentPosition] && (candidateOffset == -6 || candidateOffset == 10);
 	}
 	
 	private static boolean isEigthColumnExclusion(final int currentPosition, final int candidateOffset) {
-		return BoardUtils.EIGTH_RANK[currentPosition] && (candidateOffset == -15 || candidateOffset == -6 || candidateOffset == 10 || candidateOffset == 17);
+		return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == -15 || candidateOffset == -6 || candidateOffset == 10 || candidateOffset == 17);
 	}
 	
 	@Override

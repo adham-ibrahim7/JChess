@@ -304,15 +304,15 @@ public class Table {
 		}
 
 		private void assignTileColor() {
-			if (BoardUtils.EIGTH_RANK[tileId] ||
-				BoardUtils.SIXTH_RANK[tileId] ||
-				BoardUtils.FOURTH_RANK[tileId] ||
-				BoardUtils.SECOND_RANK[tileId]) {
+			if (BoardUtils.FIRST_ROW[tileId] ||
+				BoardUtils.THIRD_ROW[tileId] ||
+				BoardUtils.FIFTH_ROW[tileId] ||
+				BoardUtils.SEVENTH_ROW[tileId]) {
 				setBackground(this.tileId % 2 == 0 ? LIGHT_TILE_COLOR : DARK_TILE_COLOR);
-			} else if (BoardUtils.SEVENTH_RANK[tileId] ||
-					   BoardUtils.FIFTH_RANK[tileId] ||
-					   BoardUtils.THIRD_RANK[tileId] ||
-					   BoardUtils.FIRST_RANK[tileId]) {
+			} else if (BoardUtils.SECOND_ROW[tileId] ||
+					   BoardUtils.FOURTH_ROW[tileId] ||
+					   BoardUtils.SIXTH_ROW[tileId] ||
+					   BoardUtils.EIGHTH_ROW[tileId]) {
 				setBackground(this.tileId % 2 == 0 ? DARK_TILE_COLOR : LIGHT_TILE_COLOR);
 			}
 		}

@@ -52,11 +52,11 @@ public class Queen extends Piece {
     }
 	
 	private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-		return BoardUtils.FIRST_RANK[currentPosition] && (candidateOffset == -1 || candidateOffset == -9 || candidateOffset == 7);
+		return BoardUtils.EIGHTH_ROW[currentPosition] && (candidateOffset == -1 || candidateOffset == -9 || candidateOffset == 7);
 	}
 	
 	private static boolean isEigthColumnExclusion(final int currentPosition, final int candidateOffset) {
-		return BoardUtils.EIGTH_RANK[currentPosition] && (candidateOffset == 1 || candidateOffset == -7 || candidateOffset == 9);
+		return BoardUtils.FIRST_ROW[currentPosition] && (candidateOffset == 1 || candidateOffset == -7 || candidateOffset == 9);
 	}
 	
 	@Override

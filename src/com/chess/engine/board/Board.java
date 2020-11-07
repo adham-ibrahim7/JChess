@@ -23,6 +23,8 @@ public class Board {
 	private final BlackPlayer blackPlayer;
 	
 	private final Player currentPlayer;
+
+	private final Pawn enPassantPawn;
 	
 	public Board(BoardBuilder builder) {
 		this.gameBoard = createGameBoard(builder);
@@ -37,6 +39,8 @@ public class Board {
 		this.blackPlayer = new BlackPlayer(this, blackStandardLegalMoves, whiteStandardLegalMoves);
 
 		this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
+
+		this.enPassantPawn = builder.enPassantPawn;
 	}
 
 	public Tile getTile(final int tileCoordinate) {
@@ -108,6 +112,7 @@ public class Board {
 		final BoardBuilder builder = new BoardBuilder();
 		
 		//Black pieces layout
+		//TODO remove all those trues
 		builder.setPiece(new Rook(0, Alliance.BLACK, true));
 		builder.setPiece(new Knight(1, Alliance.BLACK, true));
 		builder.setPiece(new Bishop(2, Alliance.BLACK, true));
@@ -153,8 +158,7 @@ public class Board {
 		Map<Integer, Piece> boardConfig;
 		Alliance nextMoveMaker;
 		Pawn enPassantPawn;
-		
-		
+
 		public BoardBuilder() {
 			boardConfig = new HashMap<>();
 		}
@@ -173,8 +177,9 @@ public class Board {
 			return new Board(this);
 		}
 
-		public void setEnPassantPawn(Pawn enPassantPawn) {
+		public BoardBuilder setEnPassantPawn(Pawn enPassantPawn) {
 			this.enPassantPawn = enPassantPawn;
+			return this;
 		}
 
 	}
@@ -194,6 +199,10 @@ public class Board {
 		allLegalMoves.addAll(this.blackPlayer.getLegalMoves());
 		
 		return allLegalMoves;
+	}
+
+	public Pawn getEnPassantPawn() {
+		return this.enPassantPawn;
 	}
 
 }

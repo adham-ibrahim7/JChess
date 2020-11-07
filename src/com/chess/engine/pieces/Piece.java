@@ -9,7 +9,7 @@ import com.chess.engine.board.Move;
 public abstract class Piece implements Comparable<Piece> {
 	
 	//TODO get better art??
-	private static String PIECE_ART_FOLDER_PATH = "art/simple/";
+	private static String PIECE_ART_FOLDER_PATH = "art/holywarriors/";
 	
 	protected final int piecePosition;
 	protected final Alliance pieceAlliance;
@@ -18,7 +18,7 @@ public abstract class Piece implements Comparable<Piece> {
 
 	private final int cachedHashCode;
 
-	Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
+	Piece (final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
 		this.piecePosition = piecePosition;
 		this.pieceAlliance = pieceAlliance;
 		this.isFirstMove = isFirstMove;
@@ -78,13 +78,15 @@ public abstract class Piece implements Comparable<Piece> {
 	public PieceType getPieceType() {
 		return this.pieceType;
 	}
+
 	public String getImageIconFilePath() {
 		return PIECE_ART_FOLDER_PATH + 
 				//TODO alliance toString() - is it B or Black??
 				this.getPieceAlliance().toString().substring(0, 1) + 
 				this.toString() + ".gif";
 	}
-	
+
+	//TODO disallow multiple moves to the same destination
 	public abstract Collection<Move> calculateLegalMoves(final Board board);
 
 	public abstract Piece movePiece(Move move);
